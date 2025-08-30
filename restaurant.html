@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Restaurant Donor | Food Waste Reduction</title>
+  <style>
+    /* Reset */
+    * 
+    {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body 
+    {
+      font-family: Arial, sans-serif;
+      background-color: #f9fafb;
+      color: #333;
+    }
+
+    /* Header */
+    header 
+    {
+      background: #16a34a;
+      color: white;
+      padding: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+
+    header h1 
+    {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    nav ul 
+    {
+      display: flex;
+      list-style: none;
+      gap: 24px;
+    }
+
+    nav a 
+    {
+      color: white;
+      text-decoration: none;
+      font-size: 15px;
+    }
+
+    nav a:hover 
+    {
+      text-decoration: underline;
+    }
+
+    /* Hero */
+    .hero 
+    {
+      position: relative;
+      padding: 80px 20px;
+      text-align: center;
+      color: white;
+      background: url("https://images.unsplash.com/photo-1600891964599-f61ba0e24092") center/cover no-repeat;
+    }
+
+    .hero::before 
+    {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+    }
+
+    .hero-content 
+    {
+      position: relative;
+      max-width: 700px;
+      margin: auto;
+      z-index: 1;
+    }
+
+    .hero h2 
+    {
+      font-size: 36px;
+      font-weight: 800;
+    }
+
+    .hero p 
+    {
+      margin-top: 16px;
+      font-size: 18px;
+    }
+
+    .hero button 
+    {
+      margin-top: 24px;
+      padding: 10px 16px;
+      background: #16a34a;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .hero button:hover 
+    {
+      background: #15803d;
+    }
+
+    /* Dropdown */
+    .dropdown 
+    {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown ul 
+    {
+      position: absolute;
+      left: 0;
+      margin-top: 8px;
+      width: 180px;
+      background: white;
+      border-radius: 6px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      display: none;
+    }
+
+    .dropdown ul li a 
+    {
+      display: block;
+      padding: 10px;
+      font-size: 14px;
+      color: #444;
+      text-decoration: none;
+    }
+
+    .dropdown ul li a:hover 
+    {
+      background: #f0fdf4;
+      color: #15803d;
+    }
+
+    /* Sections */
+    section 
+    {
+      padding: 64px 20px;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    section h3 
+    {
+      font-size: 28px;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .grid 
+    {
+      display: grid;
+      gap: 24px;
+    }
+
+    @media (min-width: 768px) 
+    {
+      .three-cols { grid-template-columns: repeat(3, 1fr); }
+      .four-cols { grid-template-columns: repeat(4, 1fr); }
+    }
+
+    /* Cards */
+    .card 
+    {
+      background: white;
+      padding: 24px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      text-align: center;
+      transition: box-shadow 0.3s;
+    }
+
+    .card:hover 
+    {
+      box-shadow: 0 6px 14px rgba(0,0,0,0.2);
+    }
+
+    .card img 
+    {
+      width: 100%;
+      border-radius: 8px;
+    }
+
+    .card h4 
+    {
+      margin-top: 12px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .card p 
+    {
+      margin-top: 8px;
+      font-size: 14px;
+      color: #666;
+    }
+
+    .card button 
+    {
+      margin-top: 16px;
+      padding: 8px 16px;
+      background: #16a34a;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .card button:hover 
+    {
+      background: #15803d;
+    }
+
+    /* Impact */
+    .impact .stat 
+    {
+      background: #f0fdf4;
+      padding: 24px;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .impact h4 
+    {
+      font-size: 32px;
+      color: #15803d;
+      font-weight: bold;
+    }
+
+    /* Footer */
+    footer 
+    {
+      background: #16a34a;
+      color: white;
+      text-align: center;
+      padding: 24px;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <h1>FreshBite Restaurant</h1>
+    <nav>
+      <ul>
+        <li><a href="HOW IT WORKS/profile.html">Edit Profile</a></li>
+        <li><a href="#surplus">Surplus</a></li>
+        <li><a href="#how">How It Works</a></li>
+        <li><a href="#impact">Impact</a></li>
+        <li><a href="#partners">NGOs</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-content">
+      <h2>Turn Surplus into Smiles</h2>
+      <p>Donate unsold meals and ingredients directly to verified NGOs and food banks. Help reduce food waste and nourish the community.</p>
+      
+      <div class="dropdown">
+        <button onclick="toggleList()">+ Add Surplus Food</button>
+        <ul id="foodList">
+          <li><a href="#">Excess Food</a></li>
+          <li><a href="#">Donate Food</a></li>
+          <li><a href="HOW IT WORKS/scheduling2.html">Schedule Pickup</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section id="how">
+    <h3>How It Works</h3>
+    <div class="grid three-cols">
+      <div class="card">
+        <img src="PHOTOS/list surplus.jpg" alt="food">
+        <h4>1. List Surplus</h4>
+        <p>Restaurants list extra food portions or ingredients before they go to waste.</p>
+      </div>
+      <div class="card">
+        <img src="PHOTOS/me.jpg" alt="ngo">
+        <h4>2. NGO Pickup</h4>
+        <p>Partner NGOs get notified and schedule a convenient pickup time.</p>
+      </div>
+      <div class="card">
+        <img src="PHOTOS/feed.jpg" alt="feed">
+        <h4>3. Feed Community</h4>
+        <p>Surplus food reaches those in need, reducing waste and spreading joy.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Surplus -->
+  <section id="surplus" style="background:#f3f4f6;">
+    <h3>Today's Surplus</h3>
+    <div class="grid three-cols">
+      <div class="card">
+        <h4>
+          <img src="PHOTOS/veg-meal-catering-services.jpg" alt="Veg meals">
+          10x Veg Meals</h4>
+        <p>Freshly cooked, safe to eat. Best before: Tonight</p>
+        <button>Donate</button>
+      </div>
+      <div class="card">
+        <h4><img src="PHOTOS/hq720.jpg" alt="Rice">
+          5kg Rice</h4>
+        <p>Uncooked, sealed pack. Best before: 2 weeks</p>
+        <button>Donate</button>
+      </div>
+      <div class="card">
+        <h4><img src="PHOTOS/white-bread-51-600-600x400.jpg" alt="bread">
+          8x Bread Loaves</h4>
+        <p>Freshly baked today. Best before: Tomorrow</p>
+        <button>Donate</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Impact -->
+  <section id="impact" class="impact">
+    <h3>Our Impact</h3>
+    <div class="grid three-cols">
+      <div class="stat">
+        <h4>500+</h4>
+        <p>Meals Donated</p>
+      </div>
+      <div class="stat">
+        <h4>30+</h4>
+        <p>NGO Partners</p>
+      </div>
+      <div class="stat">
+        <h4>1.2T</h4>
+        <p>Food Saved</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- NGO Partners -->
+  <section id="partners" style="background:#f3f4f6;">
+    <h3>Our NGO Partners</h3>
+    <div class="grid four-cols">
+      <div class="card"><img src="PHOTOS/seva-group-foundation-noida-extension-noida-ngos-ic1b44j2qg.avif" alt="">
+        Seva Group Foundation Society</div>
+      <div class="card">
+        <img src="PHOTOS/images.jpg" alt="">Humanity Social Welfare Society</div>
+      <div class="card"><img src="PHOTOS/images1.jpg" alt="">
+        Ranra Social Welfare Society</div>
+      <div class="card"><img src="PHOTOS/logo-1024x1024.png" alt="">
+        All India Welfare Society</div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 FreshBite Restaurant | Powered by Food Waste Reduction Platform</p>
+  </footer>
+
+  <!-- JS -->
+  <script>
+    function toggleList() {
+      const list = document.getElementById("foodList");
+      list.style.display = list.style.display === "block" ? "none" : "block";
+    }
+  </script>
+</body>
+</html>

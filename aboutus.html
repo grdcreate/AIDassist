@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - FoodShare by AIDassist</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #f9fafb;
+            --bg-secondary: #e5e7eb;
+            --text-primary: #333;
+            --text-secondary: #7f8c8d;
+            --accent-primary: #27ae60;
+            --accent-secondary: #2c3e50;
+            --card-bg: #ffffff;
+            --header-bg: rgba(255, 255, 255, 0.95);
+            --footer-bg: #2c3e50;
+            --shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            --border-light: rgba(255, 255, 255, 0.1);
+        }
+
+        body.dark-mode {
+            --bg-primary: #1a1f2e;
+            --bg-secondary: #0d1117;
+            --text-primary: #e6e6e6;
+            --text-secondary: #a0aec0;
+            --accent-primary: #2ecc71;
+            --accent-secondary: #3498db;
+            --card-bg: #1e2430;
+            --header-bg: rgba(26, 31, 46, 0.95);
+            --footer-bg: #0d1117;
+            --shadow: 0 2px 15px rgba(0, 0, 0, 0.4);
+            --border-light: rgba(255, 255, 255, 0.05);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: background 0.5s ease, color 0.5s ease;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background: var(--header-bg);
+            box-shadow: var(--shadow);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            padding: 15px 0;
+            transition: background 0.5s ease, box-shadow 0.5s ease;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            color: white;
+            font-size: 22px;
+            font-weight: bold;
+            transition: background 0.5s ease;
+        }
+
+        .logo-text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 28px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--accent-secondary) 0%, var(--accent-primary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 1px;
+            transition: background 0.5s ease;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-menu li {
+            margin-left: 30px;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--accent-secondary);
+            font-weight: 500;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-menu a:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover:after {
+            width: 100%;
+        }
+
+        .nav-menu a:hover {
+            color: var(--accent-primary);
+        }
+
+        .header-btns {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-primary) 0%, #219653 100%);
+            color: white;
+            border: none;
+            box-shadow: 0 4px 15px rgba(39, 174, 96, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(39, 174, 96, 0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--accent-primary);
+            border: 2px solid var(--accent-primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--accent-primary);
+            color: white;
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            background: rgba(0, 0, 0, 0.15);
+            transform: translateY(-2px);
+        }
+
+        body.dark-mode .theme-toggle {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        body.dark-mode .theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .theme-toggle i {
+            font-size: 20px;
+            color: var(--accent-secondary);
+            transition: all 0.3s ease;
+        }
+
+        body.dark-mode .theme-toggle i {
+            color: var(--text-primary);
+        }
+
+        /* Page Header */
+        .page-header {
+            padding: 160px 0 80px;
+            background: linear-gradient(135deg, rgba(39, 174, 96, 0.8) 0%, rgba(44, 62, 80, 0.9) 100%), url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&q=80') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        .breadcrumb {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            font-size: 1.1rem;
+        }
+
+        .breadcrumb li {
+            margin: 0 10px;
+        }
+
+        .breadcrumb a {
+            color: #ecf0f1;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--accent-primary);
+        }
+
+        .breadcrumb li:not(:last-child):after {
+            content: '/';
+            margin-left: 20px;
+            color: #ecf0f1;
+        }
+
+        /* About Sections */
+        .about-section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5rem;
+            color: var(--accent-secondary);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+            transition: color 0.5s ease;
+        }
+
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70px;
+            height: 4px;
+            background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
+            border-radius: 2px;
+            transition: background 0.5s ease;
+        }
+
+        .section-title p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 25px auto 0;
+            transition: color 0.5s ease;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .about-card {
+            background: var(--card-bg);
+            padding: 40px 30px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .about-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        body.dark-mode .about-card:hover {
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .about-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(39, 174, 96, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            color: var(--accent-primary);
+            margin: 0 auto 20px;
+            transition: background 0.5s ease, color 0.5s ease;
+        }
+
+        body.dark-mode .about-icon {
+            background: rgba(46, 204, 113, 0.2);
+        }
+
+        .about-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--accent-secondary);
+            transition: color 0.5s ease;
+        }
+
+        .about-card p {
+            color: var(--text-secondary);
+            transition: color 0.5s ease;
+        }
+
+        /* Mission Section */
+        .mission {
+            background: rgba(39, 174, 96, 0.1);
+            transition: background 0.5s ease;
+        }
+
+        body.dark-mode .mission {
+            background: rgba(46, 204, 113, 0.1);
+        }
+
+        .mission-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .mission-text h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.2rem;
+            color: var(--accent-secondary);
+            margin-bottom: 20px;
+            transition: color 0.5s ease;
+        }
+
+        .mission-text p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 25px;
+            transition: color 0.5s ease;
+        }
+
+        .mission-image {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .mission-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .mission-image:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Team Section */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .team-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .team-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        body.dark-mode .team-card:hover {
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .team-image {
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .team-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .team-card:hover .team-image img {
+            transform: scale(1.1);
+        }
+
+        .team-info {
+            padding: 25px;
+            text-align: center;
+        }
+
+        .team-info h3 {
+            font-size: 1.4rem;
+            color: var(--accent-secondary);
+            margin-bottom: 5px;
+            transition: color 0.5s ease;
+        }
+
+        .team-info p {
+            color: var(--accent-primary);
+            font-weight: 500;
+            margin-bottom: 15px;
+            transition: color 0.5s ease;
+        }
+
+        .team-info .social {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .team-info .social a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: var(--bg-primary);
+            color: var(--accent-secondary);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .team-info .social a:hover {
+            background: var(--accent-primary);
+            color: white;
+            transform: translateY(-5px);
+        }
+
+        /* CTA Section */
+        .cta {
+            padding: 100px 0;
+            background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
+            color: white;
+            text-align: center;
+            transition: background 0.5s ease;
+        }
+
+        .cta h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+        }
+
+        .cta p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            opacity: 0.9;
+        }
+
+        .cta .btn {
+            background: white;
+            color: var(--accent-primary);
+            font-weight: 600;
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        .cta .btn:hover {
+            background: #f8f9fa;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--footer-bg);
+            color: white;
+            padding: 70px 0 30px;
+            transition: background 0.5s ease;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .footer-col h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--accent-primary);
+            border-radius: 2px;
+            transition: background 0.5s ease;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: #ecf0f1;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-primary);
+            padding-left: 5px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            background: var(--accent-primary);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid var(--border-light);
+            font-size: 0.9rem;
+            color: #bdc3c7;
+            transition: border-color 0.5s ease;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .nav-menu {
+                display: none;
+            }
+            
+            .mission-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .mission-image {
+                order: -1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .mission-text h2 {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .logo-text {
+                font-size: 22px;
+            }
+            
+            .logo-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 18px;
+            }
+            
+            .page-header {
+                padding: 140px 0 60px;
+            }
+            
+            .about-section {
+                padding: 70px 0;
+            }
+            
+            .cta h2 {
+                font-size: 2.2rem;
+            }
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            animation: fadeIn 1s ease forwards;
+        }
+
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+        .delay-4 { animation-delay: 0.8s; }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <div class="logo-icon">A</div>
+                <div class="logo-text">AIDassist</div>
+            </div>
+            
+             <ul class="nav-menu">
+                <li><a href="mainlandingfinal.html">Home</a></li>
+                <li><a href="restaurant.html">Resturant</a></li>
+                 <li><a href="NGO.html">NGO</a></li>
+                   <li><a href="DELIVERY.html">Aid Delivery</a></li>
+                <li><a href="aboutus.html">About Us</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+            
+            <div class="header-btns">
+                <div class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                </div>
+                <a href="MAINLOGIN.html" class="btn btn-outline">Login</a>
+                <a href="donate+dark.html" class="btn btn-primary">Donate Now</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1 class="fade-in">About us</h1>
+            <ul class="breadcrumb fade-in delay-1">
+                <li><a href="mainlanding.htm">Home</a></li>
+                <li>About Us</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- About Intro -->
+    <section class="about-section">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>Our Story</h2>
+                <p>Learn about our journey and what drives us to fight hunger and reduce food waste</p>
+            </div>
+            
+            <div class="about-grid">
+                <div class="about-card fade-in delay-1">
+                    <div class="about-icon">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <h3>Our Beginning</h3>
+                    <p>Founded in 2018, FoodShare started as a small community initiative to redirect surplus food from local restaurants to shelters.</p>
+                </div>
+                
+                <div class="about-card fade-in delay-2">
+                    <div class="about-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>Our Growth</h3>
+                    <p>Today, we operate in 12 cities with over 200 volunteers, having distributed more than 25,000 meals to those in need.</p>
+                </div>
+                
+                <div class="about-card fade-in delay-3">
+                    <div class="about-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <h3>Our Achievements</h3>
+                    <p>Recipient of the 2022 Community Impact Award and recognized by the UN Sustainability Program for our efforts.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="mission about-section">
+        <div class="container">
+            <div class="mission-content">
+                <div class="mission-text fade-in">
+                    <h2>Our Mission & Vision</h2>
+                    <p>At FoodShare by AIDassist, our mission is to reduce food waste and fight hunger by creating an efficient network that connects surplus food with people in need.</p>
+                    <p>We envision a world where no edible food goes to waste while people go hungry. Through technology and community engagement, we're building sustainable solutions to address food insecurity.</p>
+                    <a href="#" class="btn btn-primary">Join Our Mission</a>
+                </div>
+                
+                <div class="mission-image fade-in delay-1">
+                    <img src="https://i.ibb.co/qFNNqTnw/Aug-31-2025-01-08-45-AM.png" alt="Our Mission">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="about-section">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>Our Values</h2>
+                <p>The principles that guide everything we do</p>
+            </div>
+            
+            <div class="about-grid">
+                <div class="about-card fade-in delay-1">
+                    <div class="about-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>Compassion</h3>
+                    <p>We approach our work with empathy and understanding for both food donors and recipients.</p>
+                </div>
+                
+                <div class="about-card fade-in delay-2">
+                    <div class="about-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Integrity</h3>
+                    <p>We maintain the highest standards of food safety and ethical practices in all our operations.</p>
+                </div>
+                
+                <div class="about-card fade-in delay-3">
+                    <div class="about-icon">
+                        <i class="fas fa-sync-alt"></i>
+                    </div>
+                    <h3>Sustainability</h3>
+                    <p>We create solutions that are environmentally responsible and economically viable long-term.</p>
+                </div>
+                
+                <div class="about-card fade-in delay-4">
+                    <div class="about-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3>Collaboration</h3>
+                    <p>We believe in the power of partnerships to create greater impact than any organization could alone.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="about-section" style="background: var(--bg-secondary); transition: background 0.5s ease;">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>Our Team</h2>
+                <p>The passionate people behind FoodShare</p>
+            </div>
+            
+            <div class="team-grid">
+                <div class="team-card fade-in delay-1">
+                    <div class="team-image">
+                        <img src="https://i.ibb.co/ZpD1JPZd/Chat-GPT-Image-Aug-31-2025-01-22-07-AM.png"  alt="Sarah Johnson">
+                    </div>
+                    <div class="team-info">
+                        <h3>Sarah Johnson</h3>
+                        <p>Founder & CEO</p>
+                        <p>Former restaurant owner with 15+ years in food industry</p>
+                        <div class="social">
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="team-card fade-in delay-2">
+                    <div class="team-image">
+                        <img src="https://i.ibb.co/gFck9TS3/Chat-GPT-Image-Aug-31-2025-01-12-34-AM.png" alt="Michael Chen">
+                    </div>
+                    <div class="team-info">
+                        <h3>Sneha Bera</h3>
+                        <p>Operations Director</p>
+                        <p>Logistics expert with background in nonprofit management</p>
+                        <div class="social">
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="team-card fade-in delay-3">
+                    <div class="team-image">
+                        <img src="https://i.ibb.co/hJZ80Rgz/Chat-GPT-Image-Aug-31-2025-01-28-04-AM.png"  alt="Priya Patel">
+                    </div>
+                    <div class="team-info">
+                        <h3>Abhishek kumar</h3>
+                        <p>Community Manager</p>
+                        <p>Social worker dedicated to food justice and equity</p>
+                        <div class="social">
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="team-card fade-in delay-4">
+                    <div class="team-image">
+                        <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="David Martinez">
+                    </div>
+                    <div class="team-info">
+                        <h3>Giriraj Dhar</h3>
+                        <p>Technology Lead</p>
+                        <p>Software developer creating our donation platform</p>
+                        <div class="social">
+                            <a href="#"><i class="fab fa-github"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2 class="fade-in">Join Us in Our Mission</h2>
+            <p class="fade-in delay-1">Whether you donate food, volunteer your time, or help spread awareness, you can make a difference</p>
+            <a href="whatsapp community.html" class="btn fade-in delay-2">Join Our Whatsapp Community</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>FoodShare by AIDassist</h3>
+                    <p>Connecting surplus food with people in need to reduce waste and fight hunger in our communities.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="mainlanding.htm">Home</a></li>
+                        <li><a href="#">Donate Food</a></li>
+                        <li><a href="#">Receive Help</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="food.html">Food Safety Guidelines</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Press</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Contact Info</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Food Drive, City, Country</li>
+                        <li><i class="fas fa-phone"></i> +1 (555) 123-FOOD</li>
+                        <li><i class="fas fa-envelope"></i> help@addassist.org</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 FoodShare by AIDassist. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        const icon = themeToggle.querySelector('i');
+        
+        // Check for saved theme preference or respect OS preference
+        const savedTheme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+            body.classList.add('dark-mode');
+            icon.classList.remove('fa-moon');
+            icon.classList.add('fa-sun');
+        }
+        
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            
+            if (body.classList.contains('dark-mode')) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+                localStorage.setItem('theme', 'light');
+            }
+        });
+        
+        // Simple animation on scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            });
+            
+            fadeElements.forEach(element => {
+                element.style.opacity = 0;
+                element.style.transform = 'translateY(20px)';
+                element.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+                observer.observe(element);
+            });
+        });
+    </script>
+</body>
+</html>

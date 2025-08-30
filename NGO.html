@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NGO Partner | Food Waste Reduction</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      color: #fff;
+      background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Glassmorphism container */
+    .glass-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    /* Header */
+    header {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: white;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    header h1 {
+      font-size: 24px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    header h1 i {
+      font-size: 28px;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 25px;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 8px 12px;
+      border-radius: 6px;
+      transition: all 0.3s ease;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    nav ul li a:hover {
+      background: rgba(255, 255, 255, 0.2);
+      text-decoration: none;
+    }
+
+    section {
+      margin: 30px auto;
+      padding: 40px 30px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    }
+
+    section h2, section h3 {
+      text-align: center;
+      margin-bottom: 25px;
+      font-size: 32px;
+      font-weight: 700;
+      color: #fff;
+      position: relative;
+      padding-bottom: 15px;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    section h2::after, section h3::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(to right, #ff9a9e, #fad0c4);
+      border-radius: 2px;
+    }
+
+    .hero {
+      text-align: center;
+      background: rgba(255, 255, 255, 0.15);
+      padding: 60px 30px;
+    }
+
+    .hero h2 {
+      font-size: 42px;
+      margin-bottom: 15px;
+      color: #fff;
+    }
+
+    .hero p {
+      font-size: 20px;
+      max-width: 700px;
+      margin: 0 auto 30px;
+      line-height: 1.6;
+      color: #fff;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .btn {
+      margin-top: 20px;
+      padding: 14px 28px;
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 12px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+    }
+
+    .btn:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .grid {
+      display: grid;
+      gap: 25px;
+    }
+
+    .grid-3 {
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+
+    .grid-4 {
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      padding: 20px;
+      border-radius: 16px;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      background: rgba(255, 255, 255, 0.15);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+    }
+
+    .card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-bottom: 15px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .card h4 {
+      font-size: 20px;
+      margin: 10px 0;
+      font-weight: 700;
+      color: #fff;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .card p {
+      color: rgba(255, 255, 255, 0.9);
+      margin: 4px 0;
+      line-height: 1.5;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .card small {
+      color: rgba(255, 255, 255, 0.7);
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .card .btn {
+      margin-top: auto;
+      padding: 10px 20px;
+      font-size: 14px;
+    }
+
+    .impact-card {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      color: white;
+      padding: 30px 20px;
+      border-radius: 16px;
+      text-align: center;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .impact-card h4 {
+      font-size: 42px;
+      font-weight: 800;
+      margin-bottom: 10px;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .impact-card p {
+      font-size: 18px;
+      font-weight: 500;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .dropdown {
+      position: relative;
+      display: inline-block;
+      margin-top: 15px;
+    }
+
+    .dropdown button {
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      padding: 14px 28px;
+      font-size: 16px;
+      font-weight: 600;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+    }
+
+    .dropdown button:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: translateY(-3px);
+    }
+
+    .dropdown ul {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 200px;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      padding: 10px 0;
+      margin-top: 10px;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+      list-style: none;
+      z-index: 10;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .dropdown ul li {
+      padding: 0;
+    }
+
+    .dropdown ul li a {
+      display: block;
+      padding: 12px 20px;
+      text-decoration: none;
+      color: white;
+      font-weight: 500;
+      transition: all 0.2s ease;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .dropdown ul li a:hover {
+      background: rgba(255, 255, 255, 0.2);
+      color: #fff;
+    }
+
+    form {
+      max-width: 600px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    form input, form textarea {
+      padding: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 12px;
+      width: 100%;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+      color: white;
+    }
+
+    form input::placeholder, form textarea::placeholder {
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    form input:focus, form textarea:focus {
+      border-color: rgba(255, 255, 255, 0.5);
+      outline: none;
+      background: rgba(255, 255, 255, 0.15);
+      box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
+    }
+
+    form textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    footer {
+      text-align: center;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      color: white;
+      padding: 30px 20px;
+      margin-top: 60px;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    footer p {
+      font-size: 16px;
+      font-weight: 500;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Scroll reveal animation */
+    [data-animate] {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s ease-out;
+    }
+    
+    [data-animate].active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px;
+      }
+      
+      nav ul {
+        gap: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      
+      section {
+        margin: 20px 0;
+        padding: 30px 15px;
+      }
+      
+      .hero h2 {
+        font-size: 32px;
+      }
+      
+      .hero p {
+        font-size: 18px;
+      }
+      
+      .grid-3, .grid-4 {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="glass-container">
+    <!-- Header -->
+    <header>
+      <h1><i class="fas fa-hands-helping"></i> Helping Hands NGO</h1>
+      <nav>
+        <ul>
+          <li><a href="#requests">Food Requests</a></li>
+          <li><a href="#donors">Donors</a></li>
+          <li><a href="#impact">Impact</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <h2>Connecting Surplus to Smiles</h2>
+      <p>We bridge the gap between restaurants and the needy by collecting surplus food and distributing it to underprivileged communities.</p>
+
+      <div class="dropdown">
+        <button onclick="toggleList()"><i class="fas fa-plus-circle"></i> Add Food Request</button>
+        <ul id="foodList">
+          <li><a href="#"><i class="fas fa-utensils"></i> Excess Food</a></li>
+          <li><a href="#"><i class="fas fa-donate"></i> Donate Food</a></li>
+          <li><a href="#"><i class="fas fa-truck"></i> Schedule Pickup</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Food Requests -->
+    <section id="requests">
+      <h3 data-animate>Available Food Donations</h3>
+      <div class="grid grid-3">
+        <div class="card" data-animate>
+          <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Vegetarian Meals">
+          <h4>10x Veg Meals</h4>
+          <p>From: FreshBite Restaurant</p>
+          <p><small>Pickup before: 8 PM today</small></p>
+          <button class="btn">Accept Donation</button>
+        </div>
+        <div class="card" data-animate>
+          <img src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Bread Loaves">
+          <h4>8x Bread Loaves</h4>
+          <p>From: Daily Bakes</p>
+          <p><small>Pickup before: 6 PM today</small></p>
+          <button class="btn">Accept Donation</button>
+        </div>
+        <div class="card" data-animate>
+          <img src="https://images.unsplash.com/photo-1586201375761-83865001e31c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Rice">
+          <h4>5kg Rice</h4>
+          <p>From: GreenMart Grocery</p>
+          <p><small>Pickup within 3 days</small></p>
+          <button class="btn">Accept Donation</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Donors -->
+    <section id="donors">
+      <h3 data-animate>Our Trusted Donors</h3>
+      <div class="grid grid-4">
+        <div class="card" data-animate>
+          <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="FreshBite Restaurant">
+          <h4>FreshBite Restaurant</h4>
+        </div>
+        <div class="card" data-animate>
+          <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Daily Bakes">
+          <h4>Daily Bakes</h4>
+        </div>
+        <div class="card" data-animate>
+          <img src="https://images.unsplash.com/photo-1607083206968-13611e3d76db?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1115&q=80" alt="GreenMart Grocery">
+          <h4>GreenMart Grocery</h4>
+        </div>
+        <div class="card" data-animate>
+          <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwa90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1147&q=80" alt="City Café">
+          <h4>City Café</h4>
+        </div>
+      </div>
+    </section>
+
+    <!-- Impact Section -->
+    <section id="impact">
+      <h3 data-animate>Our Impact</h3>
+      <div class="grid grid-3">
+        <div class="impact-card" data-animate>
+          <h4>1000+</h4>
+          <p>Meals Served</p>
+        </div>
+        <div class="impact-card" data-animate>
+          <h4>50+</h4>
+          <p>Donors Connected</p>
+        </div>
+        <div class="impact-card" data-animate>
+          <h4>2T</h4>
+          <p>Food Saved</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+      <h3 data-animate>Contact Us</h3>
+      <p style="text-align:center; margin-bottom:30px; color:rgba(255, 255, 255, 0.9);">Want to partner with us or need assistance? Reach out today.</p>
+      <form data-animate>
+        <input type="text" placeholder="Your Name" required />
+        <input type="email" placeholder="Your Email" required />
+        <textarea placeholder="Your Message" required></textarea>
+        <button type="submit" class="btn">Send Message</button>
+      </form>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <p>© 2025 Helping Hands NGO | Powered by Food Waste Reduction Platform</p>
+    </footer>
+  </div>
+
+  <script>
+    // Scroll animations
+    const elements = document.querySelectorAll('[data-animate]');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        }
+      });
+    }, { threshold: 0.15 });
+
+    elements.forEach(el => observer.observe(el));
+    
+    function toggleList() {
+      const list = document.getElementById("foodList");
+      list.style.display = (list.style.display === "block") ? "none" : "block";
+    }
+    
+    // Close dropdown when clicking outside
+    window.addEventListener('click', function(e) {
+      if (!e.target.matches('.dropdown button')) {
+        const dropdown = document.getElementById("foodList");
+        if (dropdown.style.display === 'block') {
+          dropdown.style.display = 'none';
+        }
+      }
+    });
+  </script>
+</body>
+</html>

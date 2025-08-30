@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join Our WhatsApp Community</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            color: #fff;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 480px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo i {
+            font-size: 80px;
+            color: #fff;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+        }
+
+        .logo h1 {
+            font-size: 28px;
+            margin-top: 15px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        .community-info {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .community-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 20px;
+            border: 4px solid #25D366;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .community-info h2 {
+            font-size: 22px;
+            margin-bottom: 10px;
+            color: #128C7E;
+        }
+
+        .community-info p {
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .details {
+            margin: 25px 0;
+        }
+
+        .detail-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            padding: 12px;
+            background: #f0f8f4;
+            border-radius: 10px;
+        }
+
+        .detail-item i {
+            font-size: 20px;
+            color: #128C7E;
+            margin-right: 15px;
+            width: 30px;
+            text-align: center;
+        }
+
+        .detail-item div {
+            flex: 1;
+        }
+
+        .detail-item h3 {
+            font-size: 16px;
+            margin-bottom: 3px;
+            color: #128C7E;
+        }
+
+        .detail-item p {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .join-form {
+            margin-top: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #128C7E;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus {
+            border-color: #25D366;
+            outline: none;
+        }
+
+        .join-btn {
+            display: block;
+            width: 100%;
+            padding: 16px;
+            background: #25D366;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+        }
+
+        .join-btn:hover {
+            background: #128C7E;
+        }
+
+        .terms {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #888;
+        }
+
+        .terms a {
+            color: #25D366;
+            text-decoration: none;
+        }
+
+        .success-message {
+            display: none;
+            text-align: center;
+            padding: 20px;
+            background: #f0f8f4;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        .success-message i {
+            font-size: 50px;
+            color: #25D366;
+            margin-bottom: 15px;
+        }
+
+        .whatsapp-features {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .feature {
+            text-align: center;
+            width: 140px;
+            margin: 10px;
+        }
+
+        .feature i {
+            font-size: 30px;
+            color: #25D366;
+            margin-bottom: 10px;
+        }
+
+        .feature p {
+            font-size: 14px;
+            color: #666;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 14px;
+        }
+
+        @media (max-width: 500px) {
+            .card {
+                padding: 20px;
+            }
+            
+            .community-image {
+                width: 100px;
+                height: 100px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <i class="fab fa-whatsapp"></i>
+            <h1>Join Our Community</h1>
+        </div>
+
+        <div class="card">
+            <div class="community-info">
+                <img src="https://images.unsplash.com/photo-1568992687947-868a62a9f521?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=512&q=80" alt="Community Image" class="community-image">
+                <h2>AIDassist</h2>
+                <p>Together, we're making a difference in the fight against hunger and food waste.</p>
+            </div>
+
+            <div class="details">
+                <div class="detail-item">
+                    <i class="fas fa-users"></i>
+                    <div>
+                        <h3>1,258 members</h3>
+                        <p>Active community</p>
+                    </div>
+                </div>
+                <div class="detail-item">
+                    <i class="fas fa-user-shield"></i>
+                    <div>
+                        <h3>Admin: Anirban Sanki</h3>
+                        <p>Community manager</p>
+                    </div>
+                </div>
+                <div class="detail-item">
+                    <i class="fas fa-comment"></i>
+                    <div>
+                        <h3>Active </h3>
+                        <p>Daily/Weekly Donations</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="join-form">
+                <div class="form-group">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" placeholder="Enter your full name">
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" placeholder="Your WhatsApp number">
+                </div>
+                <button class="join-btn" onclick="joinCommunity()">Join Community</button>
+                
+                <div class="success-message" id="successMessage">
+                    <i class="fas fa-check-circle"></i>
+                    <h3>Request Sent!</h3>
+                    <p>Your request to join has been sent to the community admin. You'll be added shortly.</p>
+                </div>
+            </div>
+
+            <div class="terms">
+                By joining, you agree to our <a href="#">Community Guidelines</a> and <a href="#">Privacy Policy</a>.
+            </div>
+        </div>
+
+        <div class="whatsapp-features">
+            <div class="feature">
+                <i class="fas fa-lock"></i>
+                <p>End-to-end encryption</p>
+            </div>
+            <div class="feature">
+                <i class="fas fa-photo-video"></i>
+                <p>Media sharing</p>
+            </div>
+            <div class="feature">
+                <i class="fas fa-comments"></i>
+                <p>Group chats</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>This is an independent page. WhatsApp is a trademark of WhatsApp LLC.</p>
+    </footer>
+
+    <script>
+        function joinCommunity() {
+            // Get form values
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            
+            // Simple validation
+            if (!name || !phone) {
+                alert('Please enter your name and phone number');
+                return;
+            }
+            
+            // Show success message
+            document.getElementById('successMessage').style.display = 'block';
+            
+            // You would typically send this data to a server here
+            // For demonstration, we'll just log it
+            console.log(`Join request: Name - ${name}, Phone - ${phone}`);
+            
+            // Reset form after a delay
+            setTimeout(() => {
+                document.getElementById('name').value = '';
+                document.getElementById('phone').value = '';
+            }, 2000);
+        }
+    </script>
+</body>
+</html>

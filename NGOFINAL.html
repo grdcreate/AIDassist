@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NGO Partner | Food Waste Reduction</title>
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      color: #333;
+      background: url("https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80") no-repeat center center fixed;
+      background-size: cover;
+      animation: moveBackground 30s linear infinite;
+    }
+
+    @keyframes moveBackground {
+      0% { background-position: center top; }
+      50% { background-position: center bottom; }
+      100% { background-position: center top; }
+    }
+
+    header {
+      background: rgba(79, 70, 229, 0.9);
+      color: white;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header h1 {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 20px;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+    }
+
+    nav ul li a:hover {
+      text-decoration: underline;
+    }
+
+    section {
+      margin: 30px;
+      padding: 40px 20px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.85);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    section h2, section h3 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 28px;
+      font-weight: bold;
+      color: #4338ca;
+    }
+
+    .hero {
+      text-align: center;
+      background: rgba(199, 210, 254, 0.85);
+    }
+
+    .hero h2 {
+      font-size: 36px;
+      margin-bottom: 15px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .btn {
+      margin-top: 20px;
+      padding: 12px 24px;
+      background: #4f46e5;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background: #3730a3;
+      transform: scale(1.05);
+    }
+
+    .grid {
+      display: grid;
+      gap: 20px;
+    }
+
+    .grid-3 {
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+
+    .grid-4 {
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    }
+
+  
+    .card 
+    {
+      background: #fff;
+      padding: 16px;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      text-align: center;
+      width: 250px;
+    }
+
+    .card img 
+    {
+      width: 100%;          /* image fits card width */
+      height: 160px;        /* fixed height */
+      object-fit: cover;    /* crop without distortion */
+      border-radius: 10px;  /* smooth edges */
+      margin-bottom: 10px;
+    }
+
+    .card h4 
+    {
+      font-size: 1.2rem;
+      margin: 10px 0;
+      font-weight: bold;
+      color: #333;
+    }
+
+    .card p 
+    {
+      color: #666;
+      margin: 4px 0;
+    }
+
+    .card .btn 
+    {
+      margin-top: 10px;
+      padding: 8px 16px;
+      background: #4f46e5; /* indigo */
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .card .btn:hover 
+    {
+      background: #4338ca;
+    }
+  
+y
+    body 
+    {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f3f4f6;
+      color: #333;
+    }
+
+    .hero 
+    {
+      background: linear-gradient(135deg, #4f46e5, #6366f1);
+      color: #fff;
+      text-align: center;
+      padding: 60px 20px;
+      border-radius: 0 0 20px 20px;
+    }
+
+    .hero h2 
+    {
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+    }
+
+    .hero p 
+    {
+      max-width: 600px;
+      margin: 0 auto 20px auto;
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+
+    .dropdown 
+    {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown button 
+    {
+      background: #fff;
+      color: #4f46e5;
+      padding: 12px 20px;
+      font-size: 1rem;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .dropdown button:hover 
+    {
+      background: #e0e7ff;
+    }
+
+    .dropdown ul 
+    {
+      display: none;
+      position: absolute;
+      top: 50px;
+      left: 50%;
+      transform: translateX(-50%);
+      list-style: none;
+      background: #fff;
+      padding: 10px 0;
+      margin: 0;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      min-width: 180px;
+      z-index: 10;
+    }
+
+    .dropdown ul li 
+    {
+      padding: 10px;
+      text-align: center;
+    }
+
+    .dropdown ul li a 
+    {
+      text-decoration: none;
+      color: #4f46e5;
+      font-weight: bold;
+      display: block;
+      transition: background 0.3s ease;
+    }
+
+    .dropdown ul li a:hover 
+    {
+      background: #e0e7ff;
+      border-radius: 6px;
+    }
+
+  
+
+
+    form {
+      max-width: 500px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    form input, form textarea {
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      width: 100%;
+      font-size: 16px;
+    }
+
+    footer {
+      text-align: center;
+      background: rgba(79, 70, 229, 0.9);
+      color: white;
+      padding: 20px;
+      margin-top: 40px;
+      border-top-left-radius: 12px;
+      border-top-right-radius: 12px;
+    }
+
+    /* Scroll reveal animation */
+    [data-animate] {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.8s ease-out;
+    }
+    [data-animate].active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <h1>Helping Hands NGO</h1>
+    <nav>
+      <ul>
+        <li><a href="#requests">Food Requests</a></li>
+        <li><a href="#donors">Donors</a></li>
+        <li><a href="#impact">Impact</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  
+  <section class="hero">
+    <h2>Connecting Surplus to Smiles</h2>
+    <p>We bridge the gap between restaurants and the needy by collecting surplus food and distributing it to underprivileged communities.</p>
+
+    <div class="dropdown">
+      <button onclick="toggleList()">+ Add Food Request</button>
+      <ul id="foodList">
+        <li><a href="#">Excess Food</a></li>
+        <li><a href="#">Donate Food</a></li>
+        <li><a href="#">Schedule Pickup</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Food Requests -->
+  <section id="requests">
+    <h3 data-animate>Available Food Donations</h3>
+    <div class="grid grid-3">
+      <div class="card" data-animate>
+        <h4><img src="PHOTOS/istockphoto-1457979959-612x612.jpg" alt="">
+          10x Veg Meals</h4>
+        <p>From: FreshBite Restaurant</p>
+        <p><small>Pickup before: 8 PM today</small></p>
+        <button class="btn">Accept</button>
+      </div>
+      <div class="card" data-animate>
+        <h4><img src="PHOTOS/white-bread-51-600-600x400.jpg" alt="">
+          8x Bread Loaves</h4>
+        <p>From: Daily Bakes</p>
+        <p><small>Pickup before: 6 PM today</small></p>
+        <button class="btn">Accept</button>
+      </div>
+      <div class="card" data-animate>
+        <h4><img src="PHOTOS/hq720.jpg" alt="">
+          5kg Rice</h4>
+        <p>From: GreenMart Grocery</p>
+        <p><small>Pickup within 3 days</small></p>
+        <button class="btn">Accept</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Donors -->
+  <section id="donors">
+    <h3 data-animate>Our Trusted Donors</h3>
+    <div class="grid grid-4">
+      <div class="card" data-animate>
+        <img src="PHOTOS/fresh-bites-cafe-and.jpg" alt="">FreshBite Restaurant</div>
+      <div class="card" data-animate>
+        <img src="PHOTOS/daily.jpg" alt="">Daily Bakes</div>
+      <div class="card" data-animate><img src="PHOTOS/greenmart.jpg" alt="">GreenMart Grocery</div>
+      <div class="card" data-animate><img src="PHOTOS/citycafe.png" alt="">City Café</div>
+    </div>
+  </section>
+
+  <!-- Impact Section -->
+  <section id="impact">
+    <h3 data-animate>Our Impact</h3>
+    <div class="grid grid-3">
+      <div class="impact-card" data-animate>
+        <h4>1000+</h4>
+        <p>Meals Served</p>
+      </div>
+      <div class="impact-card" data-animate>
+        <h4>50+</h4>
+        <p>Donors Connected</p>
+      </div>
+      <div class="impact-card" data-animate>
+        <h4>2T</h4>
+        <p>Food Saved</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <h3 data-animate>Contact Us</h3>
+    <p style="text-align:center; margin-bottom:20px;">Want to partner with us or need assistance? Reach out today.</p>
+    <form data-animate>
+      <input type="text" placeholder="Your Name" />
+      <input type="email" placeholder="Your Email" />
+      <textarea placeholder="Your Message"></textarea>
+      <button type="submit" class="btn">Send</button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Helping Hands NGO | Powered by Food Waste Reduction Platform</p>
+  </footer>
+
+  <script>
+    // Scroll animations
+    const elements = document.querySelectorAll('[data-animate]');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        }
+      });
+    }, { threshold: 0.2 });
+
+    elements.forEach(el => observer.observe(el));
+    function toggleList() 
+    {
+      const list = document.getElementById("foodList");
+      list.style.display = (list.style.display === "block") ? "none" : "block";
+    }
+  </script>
+</body>
+</html>

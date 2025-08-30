@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Safety Guidelines - FoodShare by AIDassist</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-bg: linear-gradient(135deg, #27ae60 0%, #2c3e50 100%);
+            --header-bg: rgba(255, 255, 255, 0.15);
+            --card-bg: rgba(255, 255, 255, 0.15);
+            --text-color: #fff;
+            --text-secondary: rgba(255, 255, 255, 0.9);
+            --accent-color: #27ae60;
+            --accent-light: #2ecc71;
+            --border-color: rgba(255, 255, 255, 0.18);
+            --shadow-color: rgba(0, 0, 0, 0.1);
+            --input-bg: rgba(255, 255, 255, 0.2);
+            --icon-bg: rgba(255, 255, 255, 0.2);
+            --btn-primary-bg: rgba(255, 255, 255, 0.9);
+            --btn-primary-color: #27ae60;
+        }
+
+        .dark-mode {
+            --primary-bg: linear-gradient(135deg, #1a5d38 0%, #1a2432 100%);
+            --header-bg: rgba(26, 36, 50, 0.9);
+            --card-bg: rgba(26, 36, 50, 0.8);
+            --text-color: #fff;
+            --text-secondary: rgba(255, 255, 255, 0.85);
+            --accent-color: #2ecc71;
+            --accent-light: #34d399;
+            --border-color: rgba(255, 255, 255, 0.15);
+            --shadow-color: rgba(0, 0, 0, 0.25);
+            --input-bg: rgba(255, 255, 255, 0.1);
+            --icon-bg: rgba(46, 204, 113, 0.2);
+            --btn-primary-bg: #2ecc71;
+            --btn-primary-color: white;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--primary-bg);
+            color: var(--text-color);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+            transition: background 0.5s ease, color 0.5s ease;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1572357286032-c9e2d63773d4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1500&q=80') no-repeat center center/cover;
+            opacity: 0.2;
+            z-index: -1;
+            transition: opacity 0.5s ease;
+        }
+
+        .dark-mode body::before {
+            opacity: 0.1;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Theme Toggle Button */
+        .theme-toggle {
+            position: fixed;
+            top: 30px;
+            right: 40px;
+            z-index: 1001;
+            background: rgba(0, 0, 0, 0.2);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            backdrop-filter: blur(5px);
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        .theme-toggle i {
+            font-size: 20px;
+            color: var(--text-color);
+            transition: all 0.3s ease;
+        }
+
+        /* Header Styles */
+        header {
+            background: var(--header-bg);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 15px var(--shadow-color);
+            position: fixed;
+            width: calc(100% - 40px);
+            top: 20px;
+            z-index: 1000;
+            padding: 15px 0;
+            border-radius: 15px;
+            border: 1px solid var(--border-color);
+            transition: all 0.5s ease;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--icon-bg);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            color: var(--text-color);
+            font-size: 22px;
+            font-weight: bold;
+            backdrop-filter: blur(5px);
+            transition: all 0.5s ease;
+        }
+
+        .logo-text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--text-color);
+            letter-spacing: 1px;
+            transition: color 0.5s ease;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-menu li {
+            margin-left: 30px;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-weight: 500;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-menu a:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--accent-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover:after {
+            width: 100%;
+        }
+
+        .nav-menu a:hover {
+            color: var(--text-color);
+        }
+
+        .header-btns {
+            display: flex;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        .btn-primary {
+            background: var(--btn-primary-bg);
+            color: var(--btn-primary-color);
+            border: none;
+            box-shadow: 0 4px 15px var(--shadow-color);
+            transition: all 0.5s ease;
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-light);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px var(--shadow-color);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--text-color);
+            border: 2px solid var(--text-secondary);
+            margin-right: 15px;
+            transition: all 0.5s ease;
+        }
+
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--accent-color);
+            color: var(--accent-light);
+        }
+
+        /* Hero Section */
+        .safety-hero {
+            padding: 160px 0 80px;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-content h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            text-shadow: 0 2px 10px var(--shadow-color);
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 35px;
+            color: var(--text-secondary);
+        }
+
+        /* Guidelines Section */
+        .guidelines-section {
+            margin: 40px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--text-color);
+        }
+
+        .section-title p {
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .guidelines-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        .guideline-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 8px 32px var(--shadow-color);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .guideline-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px var(--shadow-color);
+        }
+
+        .guideline-icon {
+            width: 70px;
+            height: 70px;
+            background: var(--icon-bg);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: var(--text-color);
+            font-size: 28px;
+            transition: all 0.5s ease;
+        }
+
+        .guideline-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            text-align: center;
+            color: var(--text-color);
+        }
+
+        .guideline-card p {
+            margin-bottom: 15px;
+            color: var(--text-secondary);
+            flex-grow: 1;
+        }
+
+        .guideline-card ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+            color: var(--text-secondary);
+        }
+
+        .guideline-card li {
+            margin-bottom: 8px;
+        }
+
+        /* Temperature Guide */
+        .temperature-guide {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 40px 0;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 8px 32px var(--shadow-color);
+            transition: all 0.5s ease;
+        }
+
+        .temp-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .temp-table th, .temp-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .temp-table th {
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        .temp-table tr:last-child td {
+            border-bottom: none;
+        }
+
+
+        /* Footer */
+        .footer {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            margin-top: 60px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 8px 32px var(--shadow-color);
+            text-align: center;
+            transition: all 0.5s ease;
+        }
+
+        .footer p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .footer-links a {
+            color: var(--accent-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-light);
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .nav-menu {
+                display: none;
+            }
+            
+            .guidelines-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .theme-toggle {
+                top: 20px;
+                right: 20px;
+            }
+            
+            .temp-table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .logo-text {
+                font-size: 22px;
+            }
+            
+            .logo-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 18px;
+            }
+            
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            
+            .theme-toggle {
+                top: 15px;
+                right: 15px;
+                width: 40px;
+                height: 40px;
+            }
+            
+            .theme-toggle i {
+                font-size: 18px;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .guideline-card {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Theme Toggle Button -->
+    <button id="themeToggle" class="theme-toggle">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <div class="logo-icon">A</div>
+                <div class="logo-text">AIDassist</div>
+            </div>
+            
+             <ul class="nav-menu">
+                <li><a href="mainlanding+profile.html">Home</a></li>
+                <li><a href="restaurant.html">Resturant</a></li>
+                 <li><a href="NGO.html">NGO</a></li>
+             
+                   <li><a href="delivery+profile.html">Aid Delivery</a></li>
+                <li><a href="aboutus.html">About Us</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+            
+            
+            <div class="header-btns">
+                <a href="MAINLOGIN.html" class="btn btn-outline">Login</a>
+                <a href="donate-now.html" class="btn btn-primary">Donate Now</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="safety-hero">
+        <div class="container hero-content fade-in">
+            <h1>Food Safety Guidelines</h1>
+            <p>Ensuring safe food handling practices for donors and recipients</p>
+        </div>
+    </section>
+
+    <!-- Guidelines Section -->
+    <div class="container">
+        <section class="guidelines-section fade-in">
+            <div class="section-title">
+                <h2>Essential Food Safety Practices</h2>
+                <p>Follow these guidelines to ensure the food you donate is safe and nutritious</p>
+            </div>
+
+            <div class="guidelines-grid">
+                <div class="guideline-card">
+                    <div class="guideline-icon">
+                        <i class="fas fa-hands-wash"></i>
+                    </div>
+                    <h3>Cleanliness</h3>
+                    <p>Maintain proper hygiene when handling food:</p>
+                    <ul>
+                        <li>Wash hands thoroughly with soap and water</li>
+                        <li>Clean and sanitize all surfaces and equipment</li>
+                        <li>Rinse fruits and vegetables under running water</li>
+                        <li>Use clean containers and packaging</li>
+                    </ul>
+                </div>
+
+                <div class="guideline-card">
+                    <div class="guideline-icon">
+                        <i class="fas fa-temperature-low"></i>
+                    </div>
+                    <h3>Temperature Control</h3>
+                    <p>Proper temperature control prevents bacterial growth:</p>
+                    <ul>
+                        <li>Keep hot foods hot (above 140°F/60°C)</li>
+                        <li>Keep cold foods cold (below 40°F/4°C)</li>
+                        <li>Use insulated containers for transport</li>
+                        <li>Discard perishable food left out for more than 2 hours</li>
+                    </ul>
+                </div>
+
+                <div class="guideline-card">
+                    <div class="guideline-icon">
+                        <i class="fas fa-box-open"></i>
+                    </div>
+                    <h3>Proper Packaging</h3>
+                    <p>Ensure food is properly packaged and labeled:</p>
+                    <ul>
+                        <li>Use airtight containers to prevent contamination</li>
+                        <li>Label packages with contents and date</li>
+                        <li>Separate raw and cooked foods during transport</li>
+                        <li>Use appropriate packaging for different food types</li>
+                    </ul>
+                </div>
+
+                <div class="guideline-card">
+                    <div class="guideline-icon">
+                        <i class="fas fa-egg"></i>
+                    </div>
+                    <h3>Safe Food Handling</h3>
+                    <p>Follow these practices to prevent cross-contamination:</p>
+                    <ul>
+                        <li>Use separate cutting boards for raw meat and produce</li>
+                        <li>Avoid touching ready-to-eat foods with bare hands</li>
+                        <li>Store raw meat below other foods in refrigeration</li>
+                        <li>Clean spills immediately to prevent bacterial spread</li>
+                    </ul>
+                </div>
+
+                <div class="guideline-card">
+                    <div class="guideline-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>Timely Donation</h3>
+                    <p>Donate food while it's still fresh and safe to consume:</p>
+                    <ul>
+                        <li>Donate perishable items before expiration dates</li>
+                        <li>Freeze items if you can't donate within 1-2 days</li>
+                        <li>Check for signs of spoilage before donating</li>
+                        <li>Coordinate with food banks for timely pickup/delivery</li>
+                    </ul>
+                </div>
+
+                <div class="guideline-card">
+                    <div class="guideline-icon">
+                        <i class="fas fa-ban"></i>
+                    </div>
+                    <h3>What Not to Donate</h3>
+                    <p>Avoid donating these items for safety reasons:</p>
+                    <ul>
+                        <li>Foods with signs of mold or spoilage</li>
+                        <li>Foods from damaged or swollen cans</li>
+                        <li>Foods that have been recalled</li>
+                        <li>Home-canned foods (unless from approved sources)</li>
+                        <li>Foods past their expiration date</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Temperature Guide -->
+        <section class="temperature-guide fade-in">
+            <div class="section-title">
+                <h2>Food Temperature Guide</h2>
+                <p>Safe temperature ranges for different food types</p>
+            </div>
+
+            <div class="table-responsive">
+                <table class="temp-table">
+                    <thead>
+                        <tr>
+                            <th>Food Type</th>
+                            <th>Safe Temperature Range</th>
+                            <th>Important Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Poultry</td>
+                            <td>165°F (74°C) or higher</td>
+                            <td>Cook thoroughly until no pink remains</td>
+                        </tr>
+                        <tr>
+                            <td>Ground Meat</td>
+                            <td>160°F (71°C) or higher</td>
+                            <td>Ensure even cooking throughout</td>
+                        </tr>
+                        <tr>
+                            <td>Fresh Beef, Pork, Lamb</td>
+                            <td>145°F (63°C) with 3-minute rest</td>
+                            <td>Use a food thermometer to verify</td>
+                        </tr>
+                        <tr>
+                            <td>Fish & Seafood</td>
+                            <td>145°F (63°C) or until opaque</td>
+                            <td>Fish should flake easily with a fork</td>
+                        </tr>
+                        <tr>
+                            <td>Eggs & Egg Dishes</td>
+                            <td>160°F (71°C)</td>
+                            <td>Cook until yolk and white are firm</td>
+                        </tr>
+                        <tr>
+                            <td>Leftovers & Casseroles</td>
+                            <td>165°F (74°C)</td>
+                            <td>Reheat thoroughly before serving</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    
+
+        <!-- Footer -->
+        <footer class="footer fade-in">
+            <p>Following these food safety guidelines helps ensure that donated food is nutritious and safe for those in need.</p>
+            <p>For more information, consult the <a href="#">FDA Food Safety Guidelines</a> or contact your local health department.</p>
+            
+            <div class="footer-links">
+                <a href="#">Donate Food</a>
+                <a href="#">Volunteer</a>
+                <a href="contact.html">Contact Us</a>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        const icon = themeToggle.querySelector('i');
+        
+        // Check for saved theme preference or respect OS preference
+        const savedTheme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+            body.classList.add('dark-mode');
+            icon.classList.remove('fa-moon');
+            icon.classList.add('fa-sun');
+        }
+        
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            
+            if (body.classList.contains('dark-mode')) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+                localStorage.setItem('theme', 'light');
+            }
+        });
+
+        // FAQ functionality
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                const icon = question.querySelector('.faq-icon');
+                
+                answer.classList.toggle('active');
+                icon.classList.toggle('rotate');
+            });
+        });
+
+        // Animate elements on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add floating particles in background for visual effect
+            const container = document.body;
+            const particleCount = 15;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.style.position = 'absolute';
+                particle.style.width = Math.random() * 8 + 2 + 'px';
+                particle.style.height = particle.style.width;
+                particle.style.background = 'rgba(255, 255, 255, 0.3)';
+                particle.style.borderRadius = '50%';
+                particle.style.top = Math.random() * 100 + 'vh';
+                particle.style.left = Math.random() * 100 + 'vw';
+                particle.style.zIndex = '-1';
+                
+                container.appendChild(particle);
+                
+                // Animate particles
+                animateParticle(particle);
+            }
+            
+            function animateParticle(element) {
+                const duration = Math.random() * 10 + 10;
+                
+                element.animate([
+                    { transform: 'translateY(0px)', opacity: 0.7 },
+                    { transform: `translateY(${Math.random() * 50 - 25}px) translateX(${Math.random() * 50 - 25}px)`, opacity: 0.3 }
+                ], {
+                    duration: duration * 1000,
+                    iterations: Infinity,
+                    direction: 'alternate',
+                    easing: 'ease-in-out'
+                });
+            }
+        });
+    </script>
+</body>
+</html>

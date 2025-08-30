@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frequently Asked Questions - FoodShare by AIDassist</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-bg: linear-gradient(135deg, #27ae60 0%, #2c3e50 100%);
+            --header-bg: rgba(255, 255, 255, 0.15);
+            --card-bg: rgba(255, 255, 255, 0.15);
+            --text-color: #fff;
+            --text-secondary: rgba(255, 255, 255, 0.9);
+            --accent-color: #27ae60;
+            --accent-light: #2ecc71;
+            --border-color: rgba(255, 255, 255, 0.18);
+            --shadow-color: rgba(0, 0, 0, 0.1);
+            --input-bg: rgba(255, 255, 255, 0.2);
+            --icon-bg: rgba(255, 255, 255, 0.2);
+            --btn-primary-bg: rgba(255, 255, 255, 0.9);
+            --btn-primary-color: #27ae60;
+        }
+
+        .dark-mode {
+            --primary-bg: linear-gradient(135deg, #1a5d38 0%, #1a2432 100%);
+            --header-bg: rgba(26, 36, 50, 0.9);
+            --card-bg: rgba(26, 36, 50, 0.8);
+            --text-color: #fff;
+            --text-secondary: rgba(255, 255, 255, 0.85);
+            --accent-color: #2ecc71;
+            --accent-light: #34d399;
+            --border-color: rgba(255, 255, 255, 0.15);
+            --shadow-color: rgba(0, 0, 0, 0.25);
+            --input-bg: rgba(255, 255, 255, 0.1);
+            --icon-bg: rgba(46, 204, 113, 0.2);
+            --btn-primary-bg: #2ecc71;
+            --btn-primary-color: white;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--primary-bg);
+            color: var(--text-color);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+            transition: background 0.5s ease, color 0.5s ease;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1500&q=80') no-repeat center center/cover;
+            opacity: 0.2;
+            z-index: -1;
+            transition: opacity 0.5s ease;
+        }
+
+        .dark-mode body::before {
+            opacity: 0.1;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Theme Toggle Button */
+        .theme-toggle {
+            position: fixed;
+            top: 30px;
+            right: 40px;
+            z-index: 1001;
+            background: rgba(0, 0, 0, 0.2);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            backdrop-filter: blur(5px);
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        .theme-toggle i {
+            font-size: 20px;
+            color: var(--text-color);
+            transition: all 0.3s ease;
+        }
+
+        /* Header Styles */
+        header {
+            background: var(--header-bg);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 15px var(--shadow-color);
+            position: fixed;
+            width: calc(100% - 40px);
+            top: 20px;
+            z-index: 1000;
+            padding: 15px 0;
+            border-radius: 15px;
+            border: 1px solid var(--border-color);
+            transition: all 0.5s ease;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--icon-bg);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            color: var(--text-color);
+            font-size: 22px;
+            font-weight: bold;
+            backdrop-filter: blur(5px);
+            transition: all 0.5s ease;
+        }
+
+        .logo-text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--text-color);
+            letter-spacing: 1px;
+            transition: color 0.5s ease;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-menu li {
+            margin-left: 30px;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-weight: 500;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-menu a:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--accent-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover:after {
+            width: 100%;
+        }
+
+        .nav-menu a:hover {
+            color: var(--text-color);
+        }
+
+        .header-btns {
+            display: flex;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        .btn-primary {
+            background: var(--btn-primary-bg);
+            color: var(--btn-primary-color);
+            border: none;
+            box-shadow: 0 4px 15px var(--shadow-color);
+            transition: all 0.5s ease;
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-light);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px var(--shadow-color);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--text-color);
+            border: 2px solid var(--text-secondary);
+            margin-right: 15px;
+            transition: all 0.5s ease;
+        }
+
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--accent-color);
+            color: var(--accent-light);
+        }
+
+        /* Hero Section */
+        .faq-hero {
+            padding: 160px 0 80px;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-content h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            text-shadow: 0 2px 10px var(--shadow-color);
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 35px;
+            color: var(--text-secondary);
+        }
+
+        /* Search Section */
+        .search-section {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 40px 0;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 8px 32px var(--shadow-color);
+            transition: all 0.5s ease;
+        }
+
+        .search-container {
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .search-container input {
+            width: 100%;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 50px;
+            background: var(--input-bg);
+            color: var(--text-color);
+            font-size: 1.1rem;
+            padding-left: 50px;
+            border: 1px solid var(--border-color);
+        }
+
+        .search-container i {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+        }
+
+        .search-container input:focus {
+            outline: none;
+            background: var(--input-bg);
+            box-shadow: 0 0 0 3px var(--accent-color);
+        }
+
+        /* FAQ Categories */
+        .categories {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 30px 0;
+        }
+
+        .category-btn {
+            padding: 10px 20px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 30px;
+            color: var(--text-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .category-btn.active, .category-btn:hover {
+            background: var(--accent-color);
+            border-color: var(--accent-color);
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            margin: 40px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--text-color);
+        }
+
+        .section-title p {
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .faq-list {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            margin-bottom: 20px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 5px 20px var(--shadow-color);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question {
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            color: var(--text-secondary);
+        }
+
+        .faq-answer.active {
+            padding: 0 20px 20px;
+            max-height: 300px;
+        }
+
+        .faq-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .faq-icon.rotate {
+            transform: rotate(180deg);
+        }
+
+        /* Contact CTA */
+        .contact-cta {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 60px 0;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 8px 32px var(--shadow-color);
+            text-align: center;
+            transition: all 0.5s ease;
+        }
+
+        .contact-cta h2 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            color: var(--text-color);
+        }
+
+        .contact-cta p {
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            margin-top: 60px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 8px 32px var(--shadow-color);
+            text-align: center;
+            transition: all 0.5s ease;
+        }
+
+        .footer p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .footer-links a {
+            color: var(--accent-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-light);
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .nav-menu {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .theme-toggle {
+                top: 20px;
+                right: 20px;
+            }
+            
+            .categories {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .category-btn {
+                width: 200px;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .logo-text {
+                font-size: 22px;
+            }
+            
+            .logo-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 18px;
+            }
+            
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            
+            .theme-toggle {
+                top: 15px;
+                right: 15px;
+                width: 40px;
+                height: 40px;
+            }
+            
+            .theme-toggle i {
+                font-size: 18px;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .contact-cta {
+                padding: 25px;
+            }
+            
+            .footer {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Theme Toggle Button -->
+    <button id="themeToggle" class="theme-toggle">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <div class="logo-icon">A</div>
+                <div class="logo-text">AIDassist</div>
+            </div>
+            
+            <ul class="nav-menu">
+                <li><a href="landing2.html">Home</a></li>
+                <li><a href="donate-now.html">Donate Food</a></li>
+                <li><a href="#">Receive Help</a></li>
+                <li><a href="#">Our Impact</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            
+            <div class="header-btns">
+                <a href="login+night2.html" class="btn btn-outline">Login</a>
+                <a href="donate-now.html" class="btn btn-primary">Donate Now</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="faq-hero">
+        <div class="container hero-content fade-in">
+            <h1>Frequently Asked Questions</h1>
+            <p>Find answers to common questions about FoodShare and how you can make a difference</p>
+        </div>
+    </section>
+
+    <div class="container">
+        <!-- Search Section -->
+        <section class="search-section fade-in">
+            <div class="search-container">
+                <i class="fas fa-search"></i>
+                <input type="text" id="faq-search" placeholder="Search for questions or keywords...">
+            </div>
+        </section>
+
+        <!-- FAQ Categories -->
+        <div class="categories fade-in">
+            <button class="category-btn active" data-category="all">All Questions</button>
+            <button class="category-btn" data-category="donating">Donating Food</button>
+            <button class="category-btn" data-category="receiving">Receiving Help</button>
+            <button class="category-btn" data-category="volunteering">Volunteering</button>
+            <button class="category-btn" data-category="impact">Our Impact</button>
+        </div>
+
+        <!-- FAQ Section -->
+        <section class="faq-section">
+            <div class="section-title fade-in">
+                <h2>Common Questions</h2>
+                <p>Browse through our most frequently asked questions</p>
+            </div>
+
+            <div class="faq-list">
+                <!-- Donating Category -->
+                <div class="faq-item fade-in" data-category="donating">
+                    <div class="faq-question">
+                        What types of food can I donate?
+                        <span class="faq-icon"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We accept non-perishable food items such as canned goods, pasta, rice, and cereal. We also accept fresh produce, dairy, and proteins when we have the capacity to distribute them quickly. Please avoid donating expired items, homemade foods, or items in damaged packaging.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item fade-in" data-category="donating">
+                    <div class="faq-question">
+                        How do I schedule a food donation pickup?
+                        <span class="faq-icon"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>You can schedule a pickup through our website by visiting the "Donate Food" page and filling out the donation form. Our team will contact you within 24 hours to arrange a convenient pickup time. We offer pickup services on weekdays between 9 AM and 5 PM.</p>
+                    </div>
+                </div>
+
+                <!-- Receiving Category -->
+                <div class="faq-item fade-in" data-category="receiving">
+                    <div class="faq-question">
+                        Who is eligible to receive food assistance?
+                        <span class="faq-icon"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We provide food assistance to anyone in need regardless of income level, age, or background. Our services are available to individuals and families facing food insecurity. No documentation is required to receive help from our community food share programs.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item fade-in" data-category="receiving">
+                    <div class="faq-question">
+                        How often can I receive food assistance?
+                        <span class="faq-icon"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>You can receive food assistance once per week from any of our distribution centers. We believe in providing consistent support to those in need while ensuring we can serve as many community members as possible.</p>
+                    </div>
+                </div>
+
+                <!-- Volunteering Category -->
+                <div class="faq-item fade-in" data-category="volunteering">
+                    <div class="faq-question">
+                        How can I volunteer with FoodShare?
+                        <span class="faq-icon"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We welcome volunteers! You can sign up through our website by visiting the "Volunteer" page. We have opportunities for food sorting, distribution assistance, administrative support, and community outreach. Both individual and group volunteering options are available.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item fade-in" data-category="volunteering">
+                    <div class="faq-question">
+                        Do I need any special skills or training to volunteer?
+                        <span class="faq-icon"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>No special skills are required for most volunteer positions. We provide all necessary training on-site. For certain roles like food safety handling, we offer brief training sessions to ensure everyone follows proper protocols.</p>
+                    </div>
+                </div>
+
+                <!-- Impact Category -->
+                <div class="faq-item fade-in" data-category="impact">
+                    <div class="faq-question">
+                        How many people does FoodShare help each month?
+                        <span class="faq-icon"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Last month, we provided food assistance to over 5,000 individuals and families across our community. Since our founding, we've distributed more than 2 million meals to those in need. You can see our current impact metrics on our "Our Impact" page.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item fade-in" data-category="impact">
+                    <div class="faq-question">
+                        Where does the donated food go?
+                        <span class="faq-icon"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Donated food is distributed through our network of community centers, schools, and partner organizations. We prioritize getting food to areas with the highest need, including low-income neighborhoods, senior centers, and shelters. 98% of all donations go directly to people in need.</p>
+                    </div>
+                </div>
+
+                <!-- General Questions -->
+                <div class="faq-item fade-in" data-category="general">
+                    <div class="faq-question">
+                        Is FoodShare a nonprofit organization?
+                        <span class="faq-icon"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, FoodShare by AIDassist is a registered 501(c)(3) nonprofit organization. All donations are tax-deductible to the extent allowed by law. Our financial reports are available publicly on our website for transparency.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item fade-in" data-category="general">
+                    <div class="faq-question">
+                        How can I make a monetary donation?
+                        <span class="faq-icon"><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>You can make a monetary donation through our website on the "Donate Now" page. We accept credit cards, PayPal, and bank transfers. You can also mail a check to our headquarters. Monetary donations help us cover operational costs and purchase specific needed items in bulk.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact CTA -->
+        <section class="contact-cta fade-in">
+            <h2>Still have questions?</h2>
+            <p>Can't find the answer you're looking for? Please reach out to our friendly team—we're here to help!</p>
+            <a href="contact.html" class="btn btn-primary">Contact Us</a>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer fade-in">
+            <p>Have additional questions? We're here to help you make a difference in your community.</p>
+            
+            <div class="footer-links">
+                <a href="donate-now.html">Donate Food</a>
+                <a href="#">Volunteer</a>
+                <a href="contact.html">Contact Us</a>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        const icon = themeToggle.querySelector('i');
+        
+        // Check for saved theme preference or respect OS preference
+        const savedTheme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+            body.classList.add('dark-mode');
+            icon.classList.remove('fa-moon');
+            icon.classList.add('fa-sun');
+        }
+        
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            
+            if (body.classList.contains('dark-mode')) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+                localStorage.setItem('theme', 'light');
+            }
+        });
+
+        // FAQ functionality
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                const icon = question.querySelector('.faq-icon');
+                
+                answer.classList.toggle('active');
+                icon.classList.toggle('rotate');
+            });
+        });
+
+        // Category filtering
+        const categoryButtons = document.querySelectorAll('.category-btn');
+        const faqItems = document.querySelectorAll('.faq-item');
+        
+        categoryButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                categoryButtons.forEach(btn => btn.classList.remove('active'));
+                
+                // Add active class to clicked button
+                button.classList.add('active');
+                
+                const category = button.getAttribute('data-category');
+                
+                // Show/hide FAQs based on category
+                faqItems.forEach(item => {
+                    if (category === 'all' || item.getAttribute('data-category') === category) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Search functionality
+        const searchInput = document.getElementById('faq-search');
+        
+        searchInput.addEventListener('input', () => {
+            const searchTerm = searchInput.value.toLowerCase();
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question').textContent.toLowerCase();
+                const answer = item.querySelector('.faq-answer').textContent.toLowerCase();
+                
+                if (question.includes(searchTerm) || answer.includes(searchTerm)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        });
+
+        // Animate elements on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add floating particles in background for visual effect
+            const container = document.body;
+            const particleCount = 15;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.style.position = 'absolute';
+                particle.style.width = Math.random() * 8 + 2 + 'px';
+                particle.style.height = particle.style.width;
+                particle.style.background = 'rgba(255, 255, 255, 0.3)';
+                particle.style.borderRadius = '50%';
+                particle.style.top = Math.random() * 100 + 'vh';
+                particle.style.left = Math.random() * 100 + 'vw';
+                particle.style.zIndex = '-1';
+                
+                container.appendChild(particle);
+                
+                // Animate particles
+                animateParticle(particle);
+            }
+            
+            function animateParticle(element) {
+                const duration = Math.random() * 10 + 10;
+                
+                element.animate([
+                    { transform: 'translateY(0px)', opacity: 0.7 },
+                    { transform: `translateY(${Math.random() * 50 - 25}px) translateX(${Math.random() * 50 - 25}px)`, opacity: 0.3 }
+                ], {
+                    duration: duration * 1000,
+                    iterations: Infinity,
+                    direction: 'alternate',
+                    easing: 'ease-in-out'
+                });
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schedule a Pickup - FoodShare by AIDassist</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #f9fafb;
+            --bg-secondary: #e5e7eb;
+            --text-primary: #333;
+            --text-secondary: #7f8c8d;
+            --accent-primary: #27ae60;
+            --accent-secondary: #2c3e50;
+            --card-bg: #ffffff;
+            --header-bg: rgba(255, 255, 255, 0.95);
+            --footer-bg: #2c3e50;
+            --shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            --border-light: rgba(255, 255, 255, 0.1);
+        }
+
+        body.dark-mode {
+            --bg-primary: #1a1f2e;
+            --bg-secondary: #0d1117;
+            --text-primary: #e6e6e6;
+            --text-secondary: #a0aec0;
+            --accent-primary: #2ecc71;
+            --accent-secondary: #3498db;
+            --card-bg: #1e2430;
+            --header-bg: rgba(26, 31, 46, 0.95);
+            --footer-bg: #0d1117;
+            --shadow: 0 2px 15px rgba(0, 0, 0, 0.4);
+            --border-light: rgba(255, 255, 255, 0.05);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: background 0.5s ease, color 0.5s ease;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background: var(--header-bg);
+            box-shadow: var(--shadow);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            padding: 15px 0;
+            transition: background 0.5s ease, box-shadow 0.5s ease;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            color: white;
+            font-size: 22px;
+            font-weight: bold;
+            transition: background 0.5s ease;
+        }
+
+        .logo-text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 28px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--accent-secondary) 0%, var(--accent-primary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 1px;
+            transition: background 0.5s ease;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-menu li {
+            margin-left: 30px;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--accent-secondary);
+            font-weight: 500;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-menu a:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover:after {
+            width: 100%;
+        }
+
+        .nav-menu a:hover {
+            color: var(--accent-primary);
+        }
+
+        .header-btns {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-primary) 0%, #219653 100%);
+            color: white;
+            border: none;
+            box-shadow: 0 4px 15px rgba(39, 174, 96, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(39, 174, 96, 0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--accent-primary);
+            border: 2px solid var(--accent-primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--accent-primary);
+            color: white;
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            background: rgba(0, 0, 0, 0.15);
+            transform: translateY(-2px);
+        }
+
+        body.dark-mode .theme-toggle {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        body.dark-mode .theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .theme-toggle i {
+            font-size: 20px;
+            color: var(--accent-secondary);
+            transition: all 0.3s ease;
+        }
+
+        body.dark-mode .theme-toggle i {
+            color: var(--text-primary);
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 140px 0 60px;
+            min-height: 100vh;
+        }
+
+        .page-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .page-title h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.8rem;
+            color: var(--accent-secondary);
+            margin-bottom: 15px;
+            transition: color 0.5s ease;
+        }
+
+        .page-title p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
+            transition: color 0.5s ease;
+        }
+
+        /* Scheduling Flow */
+        .scheduling-flow {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .flow-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .flow-steps {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .flow-steps::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--bg-secondary);
+            z-index: 1;
+            border-radius: 2px;
+            transition: background 0.5s ease;
+        }
+
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .step-number {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--bg-secondary);
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            margin-bottom: 10px;
+            transition: all 0.5s ease;
+        }
+
+        .step.active .step-number {
+            background: var(--accent-primary);
+            color: white;
+        }
+
+        .step.completed .step-number {
+            background: var(--accent-primary);
+            color: white;
+        }
+
+        .step.completed .step-number::after {
+            content: '✓';
+        }
+
+        .step-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            text-align: center;
+            transition: color 0.5s ease;
+        }
+
+        .step.active .step-label {
+            color: var(--accent-primary);
+            font-weight: 600;
+        }
+
+        /* Scheduling Form */
+        .scheduling-form {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: var(--shadow);
+            transition: background 0.5s ease, box-shadow 0.5s ease;
+        }
+
+        .form-section {
+            margin-bottom: 30px;
+        }
+
+        .form-section h3 {
+            font-size: 1.4rem;
+            color: var(--accent-secondary);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--bg-secondary);
+            transition: all 0.5s ease;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text-primary);
+            transition: color 0.5s ease;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid var(--bg-secondary);
+            border-radius: 10px;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 0 3px rgba(39, 174, 96, 0.2);
+        }
+
+        body.dark-mode .form-group input:focus,
+        body.dark-mode .form-group select:focus,
+        body.dark-mode .form-group textarea:focus {
+            box-shadow: 0 0 0 3px rgba(46, 204, 113, 0.2);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .time-slots {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .time-slot {
+            padding: 12px;
+            border: 2px solid var(--bg-secondary);
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .time-slot:hover {
+            border-color: var(--accent-primary);
+        }
+
+        .time-slot.selected {
+            background: var(--accent-primary);
+            color: white;
+            border-color: var(--accent-primary);
+        }
+
+        .time-slot.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .form-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+
+        .btn-prev {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            padding: 12px 25px;
+            border-radius: 30px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-prev:hover {
+            background: var(--text-secondary);
+            color: white;
+        }
+
+        .btn-next {
+            background: var(--accent-primary);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-next:hover {
+            background: #219653;
+            transform: translateY(-2px);
+        }
+
+        /* Confirmation */
+        .confirmation {
+            text-align: center;
+            padding: 40px;
+        }
+
+        .confirmation-icon {
+            width: 100px;
+            height: 100px;
+            background: rgba(39, 174, 96, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            color: var(--accent-primary);
+            margin: 0 auto 30px;
+            transition: all 0.5s ease;
+        }
+
+        .confirmation h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.2rem;
+            color: var(--accent-secondary);
+            margin-bottom: 15px;
+            transition: color 0.5s ease;
+        }
+
+        .confirmation p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            transition: color 0.5s ease;
+        }
+
+        .confirmation-details {
+            background: var(--bg-primary);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px auto;
+            max-width: 500px;
+            text-align: left;
+            transition: background 0.5s ease;
+        }
+
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--bg-secondary);
+        }
+
+        .detail-item:last-child {
+            border-bottom: none;
+        }
+
+        .detail-label {
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        .detail-value {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--footer-bg);
+            color: white;
+            padding: 40px 0 20px;
+            transition: background 0.5s ease;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer-col h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .footer-col h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--accent-primary);
+            border-radius: 2px;
+            transition: background 0.5s ease;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: #ecf0f1;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-primary);
+            padding-left: 5px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            background: var(--accent-primary);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid var(--border-light);
+            font-size: 0.9rem;
+            color: #bdc3c7;
+            transition: border-color 0.5s ease;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .nav-menu {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .page-title h1 {
+                font-size: 2.2rem;
+            }
+            
+            .scheduling-form {
+                padding: 25px;
+            }
+            
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .time-slots {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .form-actions {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .btn-prev, .btn-next {
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .logo-text {
+                font-size: 22px;
+            }
+            
+            .logo-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 18px;
+            }
+            
+            .page-title h1 {
+                font-size: 1.8rem;
+            }
+            
+            .step-label {
+                font-size: 0.8rem;
+            }
+            
+            .confirmation-icon {
+                width: 80px;
+                height: 80px;
+                font-size: 30px;
+            }
+            
+            .confirmation h2 {
+                font-size: 1.8rem;
+            }
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.8s ease forwards;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <div class="logo-icon">AA</div>
+                <div class="logo-text">AIDassist</div>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="mainlanding+profile.html">Home</a></li>
+                <li><a href="restaurant.html">Resturant</a></li>
+                 <li><a href="NGO.html">NGO</a></li>
+             
+                   <li><a href="delivery+profile.html">Aid Delivery</a></li>
+                <li><a href="aboutus.html">About Us</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+            
+            <div class="header-btns">
+                <div class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                </div>
+               
+                    </div>
+                    <a href="donate now+dark.html" class="btn btn-primary">Donate Now</a>
+            </div>
+        </div>
+    </header>
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <div class="page-title fade-in">
+                <h1>Schedule a Pickup</h1>
+                <p>Use our app or call our hotline to schedule a pickup at your convenience. We'll come to your location.</p>
+            </div>
+            
+            <div class="scheduling-flow fade-in">
+                <!-- Progress Steps -->
+                <div class="flow-steps">
+                    <div class="step active">
+                        <div class="step-number">1</div>
+                        <div class="step-label">Donor Info</div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-label">Pickup Details</div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-label">Food Items</div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <div class="step-label">Confirmation</div>
+                    </div>
+                </div>
+                
+                <!-- Scheduling Form -->
+                <div class="scheduling-form">
+                    <!-- Step 1: Donor Information -->
+                    <div class="form-section">
+                        <h3>Your Information</h3>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="name">Full Name</label>
+                                <input type="text" id="name" placeholder="Enter your full name">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" placeholder="Enter your email">
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" placeholder="Enter your phone number">
+                            </div>
+                            <div class="form-group">
+                                <label for="organization">Organization (if applicable)</label>
+                                <input type="text" id="organization" placeholder="Organization name">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 2: Pickup Details -->
+                    <div class="form-section" style="display: none;">
+                        <h3>Pickup Details</h3>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="address">Pickup Address</label>
+                                <input type="text" id="address" placeholder="Enter full address">
+                            </div>
+                            <div class="form-group">
+                                <label for="instructions">Special Instructions</label>
+                                <textarea id="instructions" placeholder="Any special instructions for our driver"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="date">Preferred Date</label>
+                                <input type="date" id="date">
+                            </div>
+                            <div class="form-group">
+                                <label>Preferred Time Slot</label>
+                                <div class="time-slots">
+                                    <div class="time-slot">9:00 AM - 11:00 AM</div>
+                                    <div class="time-slot">11:00 AM - 1:00 PM</div>
+                                    <div class="time-slot">1:00 PM - 3:00 PM</div>
+                                    <div class="time-slot">3:00 PM - 5:00 PM</div>
+                                    <div class="time-slot">5:00 PM - 7:00 PM</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 3: Food Items -->
+                    <div class="form-section" style="display: none;">
+                        <h3>Food Items</h3>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="food-type">Type of Food</label>
+                                <select id="food-type">
+                                    <option value="">Select food type</option>
+                                    <option value="prepared">Prepared Meals</option>
+                                    <option value="produce">Fresh Produce</option>
+                                    <option value="bakery">Bakery Items</option>
+                                    <option value="dairy">Dairy Products</option>
+                                    <option value="packaged">Packaged Goods</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="quantity">Approximate Quantity (kg)</label>
+                                <input type="number" id="quantity" placeholder="Estimated weight in kg">
+                            </div>
+                            <div class="form-group">
+                                <label for="storage">Storage Instructions</label>
+                                <select id="storage">
+                                    <option value="">Select storage requirements</option>
+                                    <option value="refrigerated">Refrigerated</option>
+                                    <option value="frozen">Frozen</option>
+                                    <option value="room-temp">Room Temperature</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="preparation-time">Preparation Time</label>
+                                <input type="datetime-local" id="preparation-time">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 4: Confirmation -->
+                    <div class="confirmation" style="display: none;">
+                        <div class="confirmation-icon">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <h2>Pickup Scheduled Successfully!</h2>
+                        <p>Thank you for scheduling a pickup with FoodShare. We'll be there at the scheduled time to collect your donation.</p>
+                        
+                        <div class="confirmation-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Pickup Date:</span>
+                                <span class="detail-value">August 26, 2023</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Time Slot:</span>
+                                <span class="detail-value">11:00 AM - 1:00 PM</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Address:</span>
+                                <span class="detail-value">123 Main St, City, State</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Contact:</span>
+                                <span class="detail-value">John Doe (555) 123-4567</span>
+                            </div>
+                        </div>
+                        
+                        <a href="landing2.html" class="btn btn-primary">Return to Home</a>
+                    </div>
+                    
+                    <!-- Form Navigation -->
+                    <div class="form-actions">
+                        <button class="btn-prev" style="display: none;">
+                            <i class="fas fa-arrow-left"></i> Previous
+                        </button>
+                        <button class="btn-next">
+                            Next <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>FoodShare by AIDassist</h3>
+                    <p>Connecting surplus food with people in need to reduce waste and fight hunger in our communities.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="mainlanding.htm">Home</a></li>
+                        <li><a href="#">Donate Food</a></li>
+                        <li><a href="#">Receive Help</a></li>
+                        <li><a href="#">Volunteer</a></li>
+                        <li><a href="#">Partnerships</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Food Safety Guidelines</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Press</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Contact Info</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Food Drive, City, Country</li>
+                        <li><i class="fas fa-phone"></i> +1 (555) 123-FOOD</li>
+                        <li><i class="fas fa-envelope"></i> help@foodshare.org</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 FoodShare by AIDassist. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        const icon = themeToggle.querySelector('i');
+        
+        // Check for saved theme preference or respect OS preference
+        const savedTheme = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+            body.classList.add('dark-mode');
+            icon.classList.remove('fa-moon');
+            icon.classList.add('fa-sun');
+        }
+        
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            
+            if (body.classList.contains('dark-mode')) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+                localStorage.setItem('theme', 'light');
+            }
+        });
+        
+        // Scheduling Flow Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const steps = document.querySelectorAll('.step');
+            const formSections = document.querySelectorAll('.form-section');
+            const confirmation = document.querySelector('.confirmation');
+            const prevBtn = document.querySelector('.btn-prev');
+            const nextBtn = document.querySelector('.btn-next');
+            let currentStep = 0;
+            
+            // Time slot selection
+            const timeSlots = document.querySelectorAll('.time-slot');
+            timeSlots.forEach(slot => {
+                slot.addEventListener('click', () => {
+                    timeSlots.forEach(s => s.classList.remove('selected'));
+                    slot.classList.add('selected');
+                });
+            });
+            
+            // Update the progress steps
+            function updateProgress() {
+                steps.forEach((step, index) => {
+                    if (index < currentStep) {
+                        step.classList.add('completed');
+                        step.classList.remove('active');
+                    } else if (index === currentStep) {
+                        step.classList.add('active');
+                        step.classList.remove('completed');
+                    } else {
+                        step.classList.remove('active', 'completed');
+                    }
+                });
+                
+                // Show/hide form sections
+                formSections.forEach((section, index) => {
+                    if (index === currentStep) {
+                        section.style.display = 'block';
+                    } else {
+                        section.style.display = 'none';
+                    }
+                });
+                
+                // Show/hide confirmation
+                if (currentStep === 3) {
+                    confirmation.style.display = 'block';
+                    document.querySelector('.form-actions').style.display = 'none';
+                } else {
+                    confirmation.style.display = 'none';
+                    document.querySelector('.form-actions').style.display = 'flex';
+                }
+                
+                // Update buttons
+                if (currentStep === 0) {
+                    prevBtn.style.display = 'none';
+                } else {
+                    prevBtn.style.display = 'block';
+                }
+                
+                if (currentStep === 2) {
+                    nextBtn.textContent = 'Submit ';
+                    nextBtn.innerHTML = 'Submit <i class="fas fa-check"></i>';
+                } else {
+                    nextBtn.textContent = 'Next ';
+                    nextBtn.innerHTML = 'Next <i class="fas fa-arrow-right"></i>';
+                }
+            }
+            
+            // Next button click
+            nextBtn.addEventListener('click', () => {
+                if (currentStep < 3) {
+                    currentStep++;
+                    updateProgress();
+                } else if (currentStep === 3) {
+                    // Submit the form (in a real application, this would send data to a server)
+                    alert('Thank you! Your pickup has been scheduled successfully.');
+                }
+            });
+            
+            // Previous button click
+            prevBtn.addEventListener('click', () => {
+                if (currentStep > 0) {
+                    currentStep--;
+                    updateProgress();
+                }
+            });
+            
+            // Initialize progress
+            updateProgress();
+        });
+    </script>
+</body>
+</html>
